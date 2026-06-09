@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Qualytool — Bem-vindos</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --primary:   #1a3c6e;
+      --accent:    #e8a020;
+      --light-bg:  #f4f6fa;
+      --card-bg:   #ffffff;
+      --text:      #2c2c2c;
+      --muted:     #6b7280;
+    }
+
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background: var(--light-bg);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* ── HEADER ── */
+    header {
+      background: var(--primary);
+      color: #fff;
+      padding: 0 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px;
+      box-shadow: 0 2px 8px rgba(0,0,0,.25);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: 700;
+      letter-spacing: .5px;
+      display: flex;
+      align-items: center;
+      gap: .5rem;
+    }
+
+    .logo span { color: var(--accent); }
+
+    nav a {
+      color: rgba(255,255,255,.85);
+      text-decoration: none;
+      margin-left: 1.5rem;
+      font-size: .9rem;
+      transition: color .2s;
+    }
+    nav a:hover { color: var(--accent); }
+
+    /* ── HERO ── */
+    .hero {
+      background: linear-gradient(135deg, var(--primary) 0%, #2d5fa6 100%);
+      color: #fff;
+      text-align: center;
+      padding: 5rem 1.5rem 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    }
+
+    .hero-badge {
+      display: inline-block;
+      background: rgba(232,160,32,.2);
+      border: 1px solid var(--accent);
+      color: var(--accent);
+      border-radius: 2rem;
+      padding: .3rem 1rem;
+      font-size: .8rem;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 1.2rem;
+    }
+
+    .hero h1 {
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-weight: 800;
+      line-height: 1.15;
+      margin-bottom: .8rem;
+    }
+
+    .hero h1 em {
+      font-style: normal;
+      color: var(--accent);
+    }
+
+    .hero p {
+      font-size: 1.1rem;
+      color: rgba(255,255,255,.82);
+      max-width: 600px;
+      margin: 0 auto 2rem;
+    }
+
+    .btn {
+      display: inline-block;
+      background: var(--accent);
+      color: #fff;
+      padding: .75rem 2rem;
+      border-radius: .4rem;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: .95rem;
+      transition: background .2s, transform .15s;
+    }
+    .btn:hover { background: #d08c14; transform: translateY(-2px); }
+
+    /* ── CARDS ── */
+    .section { padding: 3.5rem 1.5rem; max-width: 1100px; margin: 0 auto; width: 100%; }
+
+    .section-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: .4rem;
+    }
+
+    .section-sub {
+      color: var(--muted);
+      font-size: .95rem;
+      margin-bottom: 2.2rem;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.4rem;
+    }
+
+    .card {
+      background: var(--card-bg);
+      border-radius: .75rem;
+      padding: 1.8rem 1.5rem;
+      box-shadow: 0 2px 12px rgba(0,0,0,.07);
+      border-top: 4px solid var(--primary);
+      transition: transform .2s, box-shadow .2s;
+    }
+
+    .card:hover { transform: translateY(-4px); box-shadow: 0 8px 24px rgba(0,0,0,.12); }
+
+    .card-icon {
+      font-size: 2.2rem;
+      margin-bottom: .9rem;
+    }
+
+    .card h3 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      margin-bottom: .5rem;
+      color: var(--primary);
+    }
+
+    .card p { font-size: .9rem; color: var(--muted); line-height: 1.6; }
+
+    /* ── VALUES ── */
+    .values-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+    }
+
+    .value-item {
+      background: var(--primary);
+      color: #fff;
+      border-radius: .6rem;
+      padding: 1.4rem 1.2rem;
+      text-align: center;
+    }
+
+    .value-item .icon { font-size: 1.8rem; margin-bottom: .6rem; }
+    .value-item strong { display: block; font-size: 1rem; margin-bottom: .3rem; }
+    .value-item span { font-size: .82rem; color: rgba(255,255,255,.75); }
+
+    /* ── QUOTE ── */
+    .quote-section {
+      background: linear-gradient(135deg, var(--primary), #2d5fa6);
+      color: #fff;
+      text-align: center;
+      padding: 4rem 1.5rem;
+    }
+
+    blockquote {
+      font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+      font-style: italic;
+      max-width: 700px;
+      margin: 0 auto 1rem;
+      line-height: 1.6;
+    }
+
+    blockquote::before { content: '\201C'; font-size: 3rem; color: var(--accent); line-height: 0; vertical-align: -.6rem; margin-right: .2rem; }
+    blockquote::after  { content: '\201D'; font-size: 3rem; color: var(--accent); line-height: 0; vertical-align: -.6rem; margin-left: .2rem; }
+
+    cite { color: var(--accent); font-size: .9rem; font-style: normal; font-weight: 600; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: #111827;
+      color: rgba(255,255,255,.55);
+      text-align: center;
+      padding: 1.5rem 1rem;
+      font-size: .82rem;
+      margin-top: auto;
+    }
+
+    footer strong { color: var(--accent); }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <div class="logo">Qua<span>ly</span>tool</div>
+    <nav>
+      <a href="#sobre">Sobre</a>
+      <a href="#valores">Valores</a>
+      <a href="#recursos">Recursos</a>
+    </nav>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-badge">Portal do Colaborador</div>
+    <h1>Bem-vindo(a) à<br><em>família Qualytool!</em></h1>
+    <p>
+      Estamos muito felizes em ter você aqui. Juntos construímos qualidade,
+      inovação e resultados que fazem a diferença.
+    </p>
+    <a href="#sobre" class="btn">Conheça nossa cultura</a>
+  </section>
+
+  <!-- SOBRE -->
+  <div id="sobre">
+    <div class="section">
+      <p class="section-title">Por que a Qualytool é especial?</p>
+      <p class="section-sub">Somos mais do que uma empresa — somos uma comunidade comprometida com a excelência.</p>
+      <div class="cards">
+        <div class="card">
+          <div class="card-icon">🎯</div>
+          <h3>Propósito claro</h3>
+          <p>Cada tarefa que realizamos conecta-se diretamente ao impacto positivo que entregamos aos nossos clientes e à sociedade.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">🤝</div>
+          <h3>Time colaborativo</h3>
+          <p>Aqui ninguém trabalha sozinho. O sucesso é construído com troca de ideias, apoio mútuo e parceria genuína.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">📈</div>
+          <h3>Crescimento contínuo</h3>
+          <p>Investimos no desenvolvimento de cada colaborador com treinamentos, feedbacks e oportunidades reais de evolução.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">💡</div>
+          <h3>Inovação na prática</h3>
+          <p>Incentivamos novas ideias e soluções criativas. Aqui, quem propõe muda — e isso faz toda a diferença.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- VALORES -->
+  <div id="valores" style="background:#fff; padding: 3.5rem 1.5rem;">
+    <div style="max-width:1100px; margin:0 auto;">
+      <p class="section-title">Nossos Valores</p>
+      <p class="section-sub" style="margin-bottom:2.2rem;">Os princípios que guiam cada decisão e cada atitude dentro da Qualytool.</p>
+      <div class="values-grid">
+        <div class="value-item">
+          <div class="icon">⭐</div>
+          <strong>Qualidade</strong>
+          <span>Excelência em tudo o que fazemos, sem concessões.</span>
+        </div>
+        <div class="value-item">
+          <div class="icon">🔍</div>
+          <strong>Transparência</strong>
+          <span>Comunicação honesta e relações de confiança.</span>
+        </div>
+        <div class="value-item">
+          <div class="icon">🌱</div>
+          <strong>Sustentabilidade</strong>
+          <span>Crescimento responsável, pensando no futuro.</span>
+        </div>
+        <div class="value-item">
+          <div class="icon">🚀</div>
+          <strong>Agilidade</strong>
+          <span>Velocidade com propósito e adaptabilidade.</span>
+        </div>
+        <div class="value-item">
+          <div class="icon">❤️</div>
+          <strong>Respeito</strong>
+          <span>Ambiente inclusivo onde todos se sentem valorizados.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- RECURSOS -->
+  <div id="recursos">
+    <div class="section">
+      <p class="section-title">Recursos para você</p>
+      <p class="section-sub">Tudo o que você precisa para começar bem na Qualytool.</p>
+      <div class="cards">
+        <div class="card">
+          <div class="card-icon">📋</div>
+          <h3>Manual do Colaborador</h3>
+          <p>Políticas, benefícios, normas internas e tudo que você precisa saber para o seu dia a dia.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">🎓</div>
+          <h3>Trilha de Integração</h3>
+          <p>Conteúdos e treinamentos especialmente desenhados para o seu primeiro mês na empresa.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">👥</div>
+          <h3>Conheça seu Time</h3>
+          <p>Acesse o organograma, descubra quem é quem e fique por dentro da estrutura da Qualytool.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">📞</div>
+          <h3>Canais de Comunicação</h3>
+          <p>RH, TI, facilities — saiba a quem recorrer em cada situação e como entrar em contato.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CITAÇÃO -->
+  <section class="quote-section">
+    <blockquote>
+      Grandes conquistas não são obra de uma pessoa solitária,
+      mas de um time que compartilha um propósito maior.
+    </blockquote>
+    <cite>— Equipe Qualytool</cite>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    &copy; 2026 <strong>Qualytool</strong> — Todos os direitos reservados. &nbsp;|&nbsp;
+    Portal exclusivo para colaboradores.
+  </footer>
+
+</body>
+</html>
